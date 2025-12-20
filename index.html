@@ -6,10 +6,15 @@
     
     <!-- SEO Optimierung -->
     <title>Webdesign Friedrichshafen ⭐ Ihre Website-Agentur am Bodensee | EWD</title>
-    <meta name="description" content="Professionelle Webdesign Agentur in Friedrichshafen am Bodensee ✓ Individuelle Websites ✓ SEO-Optimierung ✓ Responsive Design ✓ Faire Preise ✓ Jetzt kostenlos beraten lassen!">
+    <meta name="description" content="Professionelle Webdesign Agentur in Friedrichshafen am Bodensee ✔ Individuelle Websites ✔ SEO-Optimierung ✔ Responsive Design ✔ Faire Preise ✔ Jetzt kostenlos beraten lassen!">
     <meta name="keywords" content="Webdesign Friedrichshafen, Website erstellen Friedrichshafen, Webdesigner Bodensee, Homepage Agentur, SEO Friedrichshafen, responsive Webdesign, Online Marketing">
     <meta name="author" content="Evolved Web Designs GbR">
     <meta name="robots" content="index, follow">
+    
+    <!-- Favicon mit Cache-Busting -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=2">
+    <link rel="apple-touch-icon" href="favicon.ico?v=2">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Webdesign Friedrichshafen | Professionelle Website Entwicklung">
@@ -21,11 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
             --primary: #0066FF;
@@ -41,9 +42,7 @@
             --shadow: rgba(10, 14, 26, 0.3);
         }
         
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
         
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -51,23 +50,22 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-            position: relative;
         }
         
-        /* Animated Background */
+        /* FIX #1: Animated Background - Entfernt problematische weiße Schatten */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: 
                 radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(0, 217, 255, 0.06) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(77, 148, 255, 0.04) 0%, transparent 70%);
             z-index: -2;
             animation: backgroundPulse 15s ease-in-out infinite;
+            will-change: opacity;
+            pointer-events: none;
         }
         
         @keyframes backgroundPulse {
@@ -75,51 +73,52 @@
             50% { opacity: 0.7; }
         }
         
-        /* Stars Background */
         body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: 
-                radial-gradient(2px 2px at 20% 30%, white, transparent),
-                radial-gradient(2px 2px at 60% 70%, rgba(255, 255, 255, 0.8), transparent),
-                radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.6), transparent),
-                radial-gradient(1px 1px at 80% 10%, white, transparent),
-                radial-gradient(2px 2px at 90% 60%, rgba(255, 255, 255, 0.7), transparent),
-                radial-gradient(1px 1px at 33% 80%, rgba(255, 255, 255, 0.5), transparent),
-                radial-gradient(2px 2px at 15% 90%, rgba(255, 255, 255, 0.8), transparent),
-                radial-gradient(1px 1px at 70% 20%, rgba(255, 255, 255, 0.6), transparent);
-            background-size: 200% 200%, 200% 200%, 300% 300%, 250% 250%, 200% 200%, 280% 280%, 220% 220%, 260% 260%;
-            background-position: 0% 0%, 40% 60%, 50% 50%, 80% 10%, 90% 60%, 33% 80%, 15% 90%, 70% 20%;
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.4), transparent),
+                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.3), transparent),
+                radial-gradient(1px 1px at 80% 10%, rgba(255, 255, 255, 0.4), transparent);
+            background-size: 200% 200%;
             z-index: -2;
-            opacity: 0.3;
+            opacity: 0.15;
             animation: stars 120s linear infinite;
+            will-change: background-position;
+            pointer-events: none;
         }
         
         @keyframes stars {
-            0% {
-                background-position: 0% 0%, 40% 60%, 50% 50%, 80% 10%, 90% 60%, 33% 80%, 15% 90%, 70% 20%;
-            }
-            100% {
-                background-position: 100% 100%, 140% 160%, 150% 150%, 180% 110%, 190% 160%, 133% 180%, 115% 190%, 170% 120%;
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        /* FIX #1b: Fallback für reduced motion & no-JS */
+        @media (prefers-reduced-motion: reduce) {
+            body::before, body::after, .hero::before, .hero::after { animation: none !important; }
+            .hero h1, .hero p, .hero-buttons, .scroll-reveal, .scroll-reveal-scale, .hero-title-main {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
             }
         }
+        
+        .no-js body::before, .no-js body::after { animation: none; }
+        .no-js .scroll-reveal, .no-js .scroll-reveal-scale { opacity: 1; transform: none; }
+        .no-js .hero h1, .no-js .hero p, .no-js .hero-buttons { opacity: 1; animation: none; }
         
         /* WHATSAPP FLOATING BUTTON */
         .whatsapp-float {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 30px; right: 30px;
             z-index: 9999;
             animation: floatPulse 3s ease-in-out infinite;
         }
         
         .whatsapp-btn {
-            width: 65px;
-            height: 65px;
+            width: 65px; height: 65px;
             background: linear-gradient(135deg, var(--whatsapp) 0%, #20BA5A 100%);
             border-radius: 50%;
             display: flex;
@@ -132,31 +131,17 @@
             overflow: hidden;
         }
         
-        .whatsapp-btn::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .whatsapp-btn:hover::before {
-            opacity: 1;
-        }
-        
         .whatsapp-btn:hover {
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
         }
         
-        .whatsapp-icon {
-            width: 35px;
-            height: 35px;
-            fill: white;
+        .whatsapp-btn img {
+            width: 38px; height: 38px;
             position: relative;
             z-index: 1;
+            border-radius: 50%;
+            object-fit: cover;
         }
         
         .whatsapp-tooltip {
@@ -177,40 +162,17 @@
             transition: all 0.3s ease;
         }
         
-        .whatsapp-tooltip::after {
-            content: '';
-            position: absolute;
-            right: -8px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 8px 0 8px 8px;
-            border-color: transparent transparent transparent white;
-        }
-        
-        .whatsapp-float:hover .whatsapp-tooltip {
-            opacity: 1;
-            right: 90px;
-        }
+        .whatsapp-float:hover .whatsapp-tooltip { opacity: 1; right: 90px; }
         
         @keyframes floatPulse {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
         
-        /* Notification Badge */
         .whatsapp-badge {
             position: absolute;
-            top: -5px;
-            right: -5px;
-            width: 24px;
-            height: 24px;
+            top: -5px; right: -5px;
+            width: 24px; height: 24px;
             background: #FF4444;
             border-radius: 50%;
             display: flex;
@@ -224,23 +186,17 @@
         }
         
         @keyframes badgePulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
         
         /* COOKIE BANNER */
         .cookie-banner {
             position: fixed;
             bottom: -500px;
-            left: 0;
-            right: 0;
+            left: 0; right: 0;
             background: linear-gradient(135deg, rgba(10, 14, 26, 0.98), rgba(15, 20, 35, 0.95));
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-top: 2px solid var(--primary);
             padding: 2rem;
             z-index: 10000;
@@ -248,9 +204,7 @@
             transition: bottom 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
-        .cookie-banner.show {
-            bottom: 0;
-        }
+        .cookie-banner.show { bottom: 0; }
         
         .cookie-content {
             max-width: 1400px;
@@ -262,33 +216,12 @@
             flex-wrap: wrap;
         }
         
-        .cookie-text {
-            flex: 1;
-            min-width: 300px;
-        }
+        .cookie-text { flex: 1; min-width: 300px; }
+        .cookie-text h3 { font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--primary-light); }
+        .cookie-text p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+        .cookie-text a { color: var(--primary); text-decoration: underline; }
         
-        .cookie-text h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-light);
-        }
-        
-        .cookie-text p {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .cookie-text a {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-        
-        .cookie-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .cookie-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
         
         .cookie-btn {
             padding: 0.85rem 1.8rem;
@@ -306,40 +239,19 @@
             color: white;
             box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
         }
+        .cookie-btn-accept:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5); }
         
-        .cookie-btn-accept:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
-        }
+        .cookie-btn-decline { background: transparent; color: var(--text-gray); border: 2px solid var(--border); }
+        .cookie-btn-decline:hover { border-color: var(--primary); color: var(--primary); }
         
-        .cookie-btn-decline {
-            background: transparent;
-            color: var(--text-gray);
-            border: 2px solid var(--border);
-        }
+        .cookie-btn-settings { background: rgba(0, 102, 255, 0.1); color: var(--primary); border: 1px solid var(--primary); }
+        .cookie-btn-settings:hover { background: rgba(0, 102, 255, 0.2); }
         
-        .cookie-btn-decline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-        
-        .cookie-btn-settings {
-            background: rgba(0, 102, 255, 0.1);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-        
-        .cookie-btn-settings:hover {
-            background: rgba(0, 102, 255, 0.2);
-        }
-        
-        /* Cookie Settings Modal */
+        /* Cookie Modal */
         .cookie-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             z-index: 10001;
@@ -348,10 +260,7 @@
             justify-content: center;
             padding: 2rem;
         }
-        
-        .cookie-modal.show {
-            display: flex;
-        }
+        .cookie-modal.show { display: flex; }
         
         .cookie-modal-content {
             background: var(--dark-lighter);
@@ -362,41 +271,24 @@
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
         
-        .cookie-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .cookie-modal-header h3 {
-            font-size: 1.5rem;
-            color: var(--primary-light);
-        }
+        .cookie-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .cookie-modal-header h3 { font-size: 1.5rem; color: var(--primary-light); }
         
         .cookie-close {
-            background: none;
-            border: none;
+            background: none; border: none;
             color: var(--text-gray);
             font-size: 2rem;
             cursor: pointer;
-            padding: 0;
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             transition: all 0.3s ease;
         }
-        
-        .cookie-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--primary);
-        }
+        .cookie-close:hover { background: rgba(255, 255, 255, 0.1); color: var(--primary); }
         
         .cookie-category {
             background: rgba(0, 102, 255, 0.05);
@@ -405,85 +297,48 @@
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }
-        
-        .cookie-category-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.8rem;
-        }
-        
-        .cookie-category h4 {
-            font-size: 1.1rem;
-            color: var(--text);
-        }
+        .cookie-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+        .cookie-category h4 { font-size: 1.1rem; color: var(--text); }
+        .cookie-category p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.6; }
         
         .cookie-toggle {
             position: relative;
-            width: 60px;
-            height: 32px;
+            width: 60px; height: 32px;
             background: var(--border);
             border-radius: 16px;
             cursor: pointer;
             transition: background 0.3s ease;
         }
-        
-        .cookie-toggle.active {
-            background: var(--primary);
-        }
-        
-        .cookie-toggle.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
+        .cookie-toggle.active { background: var(--primary); }
+        .cookie-toggle.disabled { opacity: 0.5; cursor: not-allowed; }
         .cookie-toggle::after {
             content: '';
             position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 24px;
-            height: 24px;
+            top: 4px; left: 4px;
+            width: 24px; height: 24px;
             background: white;
             border-radius: 50%;
             transition: left 0.3s ease;
         }
+        .cookie-toggle.active::after { left: 32px; }
         
-        .cookie-toggle.active::after {
-            left: 32px;
-        }
+        .cookie-modal-footer { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
         
-        .cookie-category p {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        
-        .cookie-modal-footer {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        /* HEADER */
+        /* FIX #1c: HEADER - Weißer Schatten entfernt */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 1000;
             background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(0, 102, 255, 0.2);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
         
         header.scrolled {
             background: rgba(10, 14, 26, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 30px rgba(0, 102, 255, 0.15);
-            border-bottom: 1px solid rgba(0, 102, 255, 0.4);
+            border-bottom: 1px solid rgba(0, 102, 255, 0.3);
+            /* FIX: Entfernt box-shadow mit blauem Glow */
         }
         
         nav {
@@ -495,40 +350,26 @@
             align-items: center;
             transition: padding 0.4s ease;
         }
-        
-        header.scrolled nav {
-            padding: 0.6rem 2rem;
-        }
+        header.scrolled nav { padding: 0.6rem 2rem; }
         
         .logo-wrapper {
             display: flex;
             align-items: center;
             gap: 1rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
-        
-        .logo-wrapper:hover {
-            transform: translateX(5px);
-        }
+        .logo-wrapper:hover { transform: translateX(5px); }
         
         .logo-img {
             height: 60px;
             width: auto;
-            transition: all 0.4s ease;
-            filter: drop-shadow(0 0 20px rgba(0, 102, 255, 0.3));
+            transition: height 0.4s ease;
+            /* FIX: Entfernt filter: drop-shadow */
         }
+        header.scrolled .logo-img { height: 45px; }
         
-        header.scrolled .logo-img {
-            height: 45px;
-        }
-        
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-        }
-        
+        .logo-text { display: flex; flex-direction: column; gap: 0.15rem; }
         .logo-text-main {
             font-family: 'Poppins', sans-serif;
             font-size: 1.2rem;
@@ -538,24 +379,18 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            transition: font-size 0.3s ease;
         }
-        
-        header.scrolled .logo-text-main {
-            font-size: 1rem;
-        }
+        header.scrolled .logo-text-main { font-size: 1rem; }
         
         .logo-text-sub {
             font-size: 0.7rem;
             color: var(--text-gray);
             letter-spacing: 2px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: font-size 0.3s ease;
         }
-        
-        header.scrolled .logo-text-sub {
-            font-size: 0.65rem;
-        }
+        header.scrolled .logo-text-sub { font-size: 0.65rem; }
         
         .nav-links {
             display: flex;
@@ -570,27 +405,19 @@
             font-weight: 500;
             font-size: 0.95rem;
             position: relative;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
-        
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            bottom: -5px; left: 0;
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--primary-light));
             transition: width 0.3s ease;
         }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
         
         .nav-cta {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -598,34 +425,11 @@
             padding: 0.75rem 1.5rem;
             border-radius: 50px;
             font-weight: 600;
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .nav-cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s;
-        }
-        
-        .nav-cta:hover::before {
-            left: 100%;
-        }
-        
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5);
-        }
-        
-        .nav-cta::after {
-            display: none;
-        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 102, 255, 0.5); }
+        .nav-cta::after { display: none; }
         
         .mobile-toggle {
             display: none;
@@ -634,32 +438,18 @@
             cursor: pointer;
             padding: 8px;
             border-radius: 8px;
-            transition: all 0.3s;
+            transition: background 0.3s ease;
         }
-        
-        .mobile-toggle:hover {
-            background: rgba(0, 102, 255, 0.1);
-        }
-        
+        .mobile-toggle:hover { background: rgba(0, 102, 255, 0.1); }
         .mobile-toggle span {
-            width: 28px;
-            height: 3px;
+            width: 28px; height: 3px;
             background: linear-gradient(90deg, var(--primary), var(--primary-light));
             border-radius: 3px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
-        
-        .mobile-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-        
-        .mobile-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .mobile-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
-        }
+        .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+        .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+        .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(8px, -8px); }
         
         /* SECTIONS */
         section {
@@ -669,11 +459,7 @@
             position: relative;
         }
         
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        
+        .section-header { text-align: center; margin-bottom: 4rem; }
         .section-label {
             display: inline-block;
             color: var(--primary);
@@ -692,14 +478,12 @@
             margin-bottom: 1.5rem;
             letter-spacing: -1px;
         }
-        
         h2 {
             font-family: 'Poppins', sans-serif;
             font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 700;
             line-height: 1.3;
         }
-        
         h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 1.4rem;
@@ -730,25 +514,24 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+            top: -50%; right: -20%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
             border-radius: 50%;
             animation: heroFloat 20s ease-in-out infinite;
+            will-change: transform;
+            pointer-events: none;
         }
-        
         .hero::after {
             content: '';
             position: absolute;
-            bottom: -30%;
-            left: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            bottom: -30%; left: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             animation: heroFloat 25s ease-in-out infinite reverse;
+            will-change: transform;
+            pointer-events: none;
         }
         
         @keyframes heroFloat {
@@ -757,16 +540,8 @@
             66% { transform: translate(-30px, 30px); }
         }
         
-        .hero-content {
-            max-width: 900px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.2s forwards;
-        }
+        .hero-content { max-width: 900px; position: relative; z-index: 1; }
+        .hero h1 { opacity: 0; animation: fadeInUp 0.8s ease 0.2s forwards; }
         
         .hero-title-line1 {
             display: block;
@@ -777,7 +552,6 @@
             text-transform: uppercase;
             letter-spacing: 4px;
         }
-        
         .hero-title-main {
             display: block;
             font-size: clamp(3rem, 8vw, 5.5rem);
@@ -789,15 +563,13 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             background-size: 200% auto;
-            animation: shine 3s linear infinite;
+            animation: shine 4s linear infinite;
+            will-change: background-position;
         }
-        
         @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
         }
-        
         .hero-title-line2 {
             display: block;
             font-size: clamp(1.2rem, 3vw, 2rem);
@@ -814,7 +586,6 @@
             opacity: 0;
             animation: fadeInUp 0.8s ease 0.4s forwards;
         }
-        
         .hero-buttons {
             display: flex;
             gap: 1rem;
@@ -825,14 +596,8 @@
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* BUTTONS */
@@ -841,62 +606,25 @@
             border-radius: 8px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-block;
             position: relative;
             overflow: hidden;
         }
-        
         .btn-primary {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
         }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn-primary:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 102, 255, 0.5);
         }
-        
         .btn-secondary {
             background: transparent;
             color: var(--text);
             border: 2px solid var(--border);
         }
-        
-        .btn-secondary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-secondary:hover::before {
-            left: 100%;
-        }
-        
         .btn-secondary:hover {
             border-color: var(--primary);
             color: var(--primary);
@@ -904,18 +632,9 @@
         }
         
         /* GRID & CARDS */
-        .grid {
-            display: grid;
-            gap: 2rem;
-        }
-        
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-        
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
+        .grid { display: grid; gap: 2rem; }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
         
         .card {
             background: rgba(26, 31, 46, 0.6);
@@ -923,35 +642,16 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.05), transparent);
-            transition: left 0.6s;
-        }
-        
-        .card:hover::before {
-            left: 100%;
-        }
-        
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 15px 35px var(--shadow), 0 0 30px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 15px 35px var(--shadow);
         }
-        
-        .card:hover h3 {
-            color: var(--primary);
-        }
+        .card:hover h3 { color: var(--primary); }
         
         .card-icon {
             font-size: 3rem;
@@ -959,20 +659,11 @@
             display: inline-block;
             transition: transform 0.3s ease;
         }
+        .card:hover .card-icon { transform: scale(1.2) rotate(5deg); }
+        .card p { color: var(--text-gray); line-height: 1.8; }
         
-        .card:hover .card-icon {
-            transform: scale(1.2) rotate(5deg);
-        }
-        
-        .card p {
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-        
-        /* BENEFITS */
         .benefit-number {
-            width: 55px;
-            height: 55px;
+            width: 55px; height: 55px;
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border-radius: 50%;
@@ -983,21 +674,14 @@
             justify-content: center;
             margin-bottom: 1rem;
             box-shadow: 0 4px 15px rgba(0, 102, 255, 0.4);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
-        
-        .card:hover .benefit-number {
-            transform: rotate(360deg) scale(1.1);
-        }
+        .card:hover .benefit-number { transform: rotate(360deg) scale(1.1); }
         
         /* TEAM */
-        .team-card {
-            text-align: center;
-        }
-        
+        .team-card { text-align: center; }
         .team-avatar {
-            width: 140px;
-            height: 140px;
+            width: 140px; height: 140px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
             border-radius: 50%;
             margin: 0 auto 1.5rem;
@@ -1008,45 +692,22 @@
             font-weight: 700;
             color: white;
             box-shadow: 0 8px 25px rgba(0, 102, 255, 0.4);
-            transition: all 0.4s ease;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        
         .team-card:hover .team-avatar {
             transform: scale(1.05) rotate(5deg);
             box-shadow: 0 12px 35px rgba(0, 102, 255, 0.6);
         }
-        
-        .team-role {
-            color: var(--text-gray);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
+        .team-role { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 0.5rem; }
         
         /* FORM */
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
+        .form-container { max-width: 700px; margin: 0 auto; }
+        .form-grid { display: grid; gap: 1.5rem; }
+        .form-group { display: flex; flex-direction: column; }
         
-        .form-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
+        label { margin-bottom: 0.5rem; font-weight: 500; color: var(--text-gray); }
         
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-        
-        input,
-        textarea,
-        select {
+        input, textarea, select {
             padding: 1rem;
             border: 1px solid var(--border);
             border-radius: 8px;
@@ -1054,24 +715,17 @@
             color: var(--text);
             font-family: inherit;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
         }
-        
-        input:focus,
-        textarea:focus,
-        select:focus {
+        input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
             transform: translateY(-2px);
         }
+        textarea { min-height: 150px; resize: vertical; }
         
-        textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        button {
+        button[type="submit"] {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 1rem 2rem;
@@ -1080,30 +734,9 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        button:hover {
+        button[type="submit"]:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 102, 255, 0.5);
         }
@@ -1115,12 +748,7 @@
             padding: 3rem 2rem;
             text-align: center;
         }
-        
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        
+        .footer-content { max-width: 1400px; margin: 0 auto; }
         .footer-links {
             display: flex;
             gap: 2rem;
@@ -1128,32 +756,12 @@
             margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-        
         .footer-links a {
             color: var(--text-gray);
             text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: color 0.3s ease;
         }
-        
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .footer-links a:hover::after {
-            width: 100%;
-        }
+        .footer-links a:hover { color: var(--primary); }
         
         .social-links {
             display: flex;
@@ -1161,10 +769,8 @@
             justify-content: center;
             margin: 2rem 0;
         }
-        
         .social-link {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             background: rgba(0, 102, 255, 0.1);
             border: 1px solid var(--primary);
             border-radius: 50%;
@@ -1172,10 +778,10 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 1.5rem;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
         }
-        
+        .social-link img { width: 28px; height: 28px; object-fit: contain; }
         .social-link:hover {
             background: var(--primary);
             transform: translateY(-5px) rotate(360deg);
@@ -1186,33 +792,23 @@
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .scroll-reveal.revealed {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
         
         .scroll-reveal-scale {
             opacity: 0;
             transform: scale(0.8);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        .scroll-reveal-scale.revealed {
-            opacity: 1;
-            transform: scale(1);
-        }
+        .scroll-reveal-scale.revealed { opacity: 1; transform: scale(1); }
         
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
+                top: 70px; left: -100%;
+                width: 100%; height: calc(100vh - 70px);
                 background: rgba(10, 14, 26, 0.98);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
@@ -1221,112 +817,46 @@
                 gap: 1.5rem;
                 transition: left 0.3s ease;
             }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .mobile-toggle {
-                display: flex;
-            }
-            
-            .logo-img {
-                height: 50px;
-            }
-            
-            header.scrolled .logo-img {
-                height: 40px;
-            }
-            
-            .logo-text-main {
-                font-size: 1rem;
-            }
-            
-            .hero {
-                padding-top: 6rem;
-            }
-            
-            section {
-                padding: 4rem 1.5rem;
-            }
-            
-            .grid-2,
-            .grid-3 {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-title-line1 {
-                font-size: 1.2rem;
-                letter-spacing: 2px;
-            }
-            
-            .hero-title-main {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title-line2 {
-                font-size: 1rem;
-                letter-spacing: 2px;
-            }
-            
-            .cookie-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .cookie-buttons {
-                width: 100%;
-            }
-            
-            .cookie-btn {
-                flex: 1;
-                min-width: 120px;
-            }
-            
-            .cookie-modal-content {
-                padding: 1.5rem;
-            }
-            
-            .cookie-modal-footer {
-                flex-direction: column;
-            }
-            
-            .cookie-btn {
-                width: 100%;
-            }
-            
-            .whatsapp-float {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .whatsapp-btn {
-                width: 55px;
-                height: 55px;
-            }
-            
-            .whatsapp-icon {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .whatsapp-tooltip {
-                display: none;
-            }
+            .nav-links.active { left: 0; }
+            .mobile-toggle { display: flex; }
+            .logo-img { height: 50px; }
+            header.scrolled .logo-img { height: 40px; }
+            .logo-text-main { font-size: 1rem; }
+            .hero { padding-top: 6rem; }
+            section { padding: 4rem 1.5rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .hero-title-line1 { font-size: 1.2rem; letter-spacing: 2px; }
+            .hero-title-main { font-size: 2.5rem; }
+            .hero-title-line2 { font-size: 1rem; letter-spacing: 2px; }
+            .cookie-content { flex-direction: column; align-items: flex-start; }
+            .cookie-buttons { width: 100%; }
+            .cookie-btn { flex: 1; min-width: 120px; }
+            .cookie-modal-content { padding: 1.5rem; }
+            .cookie-modal-footer { flex-direction: column; }
+            .cookie-btn { width: 100%; }
+            .whatsapp-float { bottom: 20px; right: 20px; }
+            .whatsapp-btn { width: 55px; height: 55px; }
+            .whatsapp-btn img { width: 32px; height: 32px; }
+            .whatsapp-tooltip { display: none; }
         }
     </style>
 </head>
-<body>
+<body class="no-js">
+    <script>document.body.classList.remove('no-js');</script>
+    
+    <noscript>
+        <style>
+            .scroll-reveal, .scroll-reveal-scale { opacity: 1 !important; transform: none !important; }
+            .hero h1, .hero p, .hero-buttons { opacity: 1 !important; animation: none !important; }
+            body::before, body::after { animation: none !important; }
+        </style>
+    </noscript>
+    
     <!-- WHATSAPP FLOATING BUTTON -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/491717031722?text=Hallo%20EWD%20Team!%20Ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Webdesign-Leistungen%20und%20m%C3%B6chte%20gerne%20mehr%20erfahren." 
-           class="whatsapp-btn" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           aria-label="Kontakt via WhatsApp">
-            <svg class="whatsapp-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.488 2.025 7.788l-2.025 7.213 7.413-1.988c2.213 1.163 4.738 1.825 7.425 1.825 8.837 0 16-7.163 16-16s-7.163-16-15.838-16zM16 29.463c-2.425 0-4.713-0.638-6.688-1.75l-0.488-0.263-4.838 1.3 1.313-4.663-0.325-0.5c-1.325-2.063-2.025-4.45-2.025-6.913 0-7.3 5.938-13.238 13.238-13.238 7.3 0 13.238 5.938 13.238 13.238-0.163 7.3-6.1 13.075-13.425 13.075zM23.213 19.838c-0.4-0.2-2.363-1.175-2.738-1.288-0.363-0.125-0.638-0.175-0.9 0.2-0.263 0.363-1.025 1.288-1.25 1.55s-0.463 0.3-0.863 0.1c-0.4-0.2-1.688-0.625-3.213-1.988-1.188-1.063-1.988-2.375-2.225-2.775-0.238-0.4-0.025-0.613 0.175-0.813 0.188-0.175 0.4-0.463 0.6-0.688 0.2-0.238 0.263-0.4 0.4-0.663 0.125-0.263 0.063-0.488-0.025-0.688s-0.9-2.163-1.238-2.963c-0.325-0.775-0.663-0.663-0.9-0.675-0.238-0.013-0.488-0.013-0.75-0.013s-0.688 0.1-1.05 0.488c-0.363 0.4-1.375 1.35-1.375 3.288s1.413 3.813 1.6 4.075c0.188 0.263 2.688 4.1 6.513 5.738 0.913 0.388 1.625 0.625 2.175 0.8 0.913 0.288 1.738 0.25 2.388 0.15 0.738-0.113 2.263-0.925 2.588-1.825 0.313-0.9 0.313-1.663 0.225-1.825-0.1-0.175-0.363-0.275-0.763-0.475z" fill="currentColor"/>
-            </svg>
+        <a href="https://wa.me/4917170317722?text=Hallo%20EWD%20Team!%20Ich%20interessiere%20mich%20f%C3%BCr%20Ihre%20Webdesign-Leistungen." 
+           class="whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Kontakt via WhatsApp">
+            <img src="icon-whatsapp.png?v=2" alt="WhatsApp" width="38" height="38" loading="lazy">
             <div class="whatsapp-badge">1</div>
         </a>
         <div class="whatsapp-tooltip">💬 Schreiben Sie uns!</div>
@@ -1337,74 +867,48 @@
         <div class="cookie-content">
             <div class="cookie-text">
                 <h3>🍪 Cookie-Einstellungen</h3>
-                <p>
-                    Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. 
-                    Durch Ihre Zustimmung helfen Sie uns, unsere Dienste zu optimieren. 
-                    <a href="#" onclick="openCookieModal(); return false;">Weitere Informationen</a>
-                </p>
+                <p>Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. 
+                <a href="#" onclick="openCookieModal(); return false;">Weitere Informationen</a></p>
             </div>
             <div class="cookie-buttons">
-                <button class="cookie-btn cookie-btn-accept" onclick="acceptAllCookies()">
-                    Alle akzeptieren
-                </button>
-                <button class="cookie-btn cookie-btn-settings" onclick="openCookieModal()">
-                    Einstellungen
-                </button>
-                <button class="cookie-btn cookie-btn-decline" onclick="declineAllCookies()">
-                    Ablehnen
-                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptAllCookies()">Alle akzeptieren</button>
+                <button class="cookie-btn cookie-btn-settings" onclick="openCookieModal()">Einstellungen</button>
+                <button class="cookie-btn cookie-btn-decline" onclick="declineAllCookies()">Ablehnen</button>
             </div>
         </div>
     </div>
 
-    <!-- COOKIE SETTINGS MODAL -->
+    <!-- COOKIE MODAL -->
     <div class="cookie-modal" id="cookieModal">
         <div class="cookie-modal-content">
             <div class="cookie-modal-header">
-                <h3>🍪 Cookie-Einstellungen verwalten</h3>
+                <h3>🍪 Cookie-Einstellungen</h3>
                 <button class="cookie-close" onclick="closeCookieModal()">&times;</button>
             </div>
-            
             <div class="cookie-category">
                 <div class="cookie-category-header">
                     <h4>✅ Notwendige Cookies</h4>
                     <div class="cookie-toggle active disabled"></div>
                 </div>
-                <p>
-                    Diese Cookies sind für die Grundfunktionen der Website erforderlich 
-                    und können nicht deaktiviert werden. Sie speichern z.B. Ihre Cookie-Einstellungen.
-                </p>
+                <p>Diese Cookies sind für die Grundfunktionen der Website erforderlich.</p>
             </div>
-            
             <div class="cookie-category">
                 <div class="cookie-category-header">
                     <h4>📊 Analyse-Cookies</h4>
                     <div class="cookie-toggle" id="analyticsCookieToggle" onclick="toggleCookie('analytics')"></div>
                 </div>
-                <p>
-                    Diese Cookies helfen uns zu verstehen, wie Besucher mit unserer Website interagieren, 
-                    indem Informationen anonym gesammelt und gemeldet werden.
-                </p>
+                <p>Diese Cookies helfen uns zu verstehen, wie Besucher unsere Website nutzen.</p>
             </div>
-            
             <div class="cookie-category">
                 <div class="cookie-category-header">
                     <h4>🎯 Marketing-Cookies</h4>
                     <div class="cookie-toggle" id="marketingCookieToggle" onclick="toggleCookie('marketing')"></div>
                 </div>
-                <p>
-                    Marketing-Cookies werden verwendet, um Besuchern relevante Anzeigen 
-                    und Marketing-Kampagnen bereitzustellen.
-                </p>
+                <p>Marketing-Cookies werden verwendet, um relevante Anzeigen bereitzustellen.</p>
             </div>
-            
             <div class="cookie-modal-footer">
-                <button class="cookie-btn cookie-btn-accept" onclick="saveCustomCookies()">
-                    Auswahl speichern
-                </button>
-                <button class="cookie-btn cookie-btn-secondary" onclick="acceptAllCookies()">
-                    Alle akzeptieren
-                </button>
+                <button class="cookie-btn cookie-btn-accept" onclick="saveCustomCookies()">Auswahl speichern</button>
+                <button class="cookie-btn cookie-btn-secondary" onclick="acceptAllCookies()">Alle akzeptieren</button>
             </div>
         </div>
     </div>
@@ -1413,7 +917,7 @@
     <header id="header">
         <nav>
             <a href="#hero" class="logo-wrapper">
-                <img src="data:image/png;base64,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r45vD7mI5sdfj4/es7t792DYL2Q1Onw/27mhsmNy+Jd/+XCDC6qr0Xc/TgbPt9Qz4Orda21E2TE9/fVUXFiz+vXt8cdd0b/58VdReHrGxTZnH85EL5viMy84YPNH//Of//zn/x/9z3/+85///Oc///nPf/7zn//85z//+c9//vOf//znP//5z3/+85///Oc///nPf/7zn//85z//+c9//vOf//znP//5z3/+85///Oc///nPf/7zn//85z//+c9//vOf//znP//5z3/+85///Oc///nPf/7zn//85z//+c9//vOf//znP//5z3/+85///P/TAVZQOCAgFwAAkFIBnQEqOAQ4BD5RKJNHI6KzqiB1iEJwCglpbvJnkcvP0BmF6lnqhL4x8irng/XyaIj3Aff6H+LXh1/cPyp8Sv1T9ayHf+F66v3fw5+L2oX6n/xW/bgD/Qf71xLcan/F8Zz7P/qfYA/QXoSf7X+X9DH5x/nPYE/k39X/7v9/9rf1pftN7E/6oAf506dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06b61u4T8Zn1Dhw4cOHDhw4cOHDhw4cOHDhw4cOHDhw4cOG/IT/WFRW43nkmB1BrI2DX/nz58+fPnz58+fPnz58+fPnz58+fPnz58+fPngOW7esxeKF9mbgdmnZldUbYZ06dOnTp06dOnTp06dOnTp06dOnTp06VBjmC2AYU3WvYhOUCIGqo+jLHpuL5aAH6syFixYsWLFixYsWLFixYsWLFixYsWLFMtbtj9Sozf/bygj0RjBNXPR/XWV9C20uqQM2v/h6ZMmTJkyZMmTJkyZMmTJkyZMmTJkyXg9EWqzKp+rD6XHh6pbpv3hfnt/mTRarHnLyZMmTJkyZMmTJkyZMmTJkyZMmTJkMcuPUF88WPsjvczApzO7EdG1GiyPqGS5Thq/HnZTp06dOnTp06dOnTp06dOnTp06dOnR164btL+IT17Tid2U6O9RC42kUYOnTp06dOnTp06dOnTp06dOnTp06dN/DS7zvso9qPSZOLLW0LxfNsR9Q4cOHDhw4cOHDhw4cOHDhw4cOHDhkuU4avECfOWY5bupXKi8IML+jCjqhucAP5hyq5EPkhrp06dOnTp06dOnTp06dOnTp06dOnTfth4bQuZsP/lrdsZh/09y3ix4XidMfdDdIsVRqEfUOHDhw4cOHDhw4cOHDhw4cOHDhw4ZLYeLX2tdNOupUToHJmP8EFwMbhyi/JbPf0XIwx2eT4T06dOnTp06dOnTp06dOnTp06dOnTpvm02y2w10i/SMrUnhdxZJo4bmCc3DEHQOHVHNEMKOhwXDhw4cOHDhw4cOHDhw4cOHDhw4cOGRfbtMogGgbQpZZzO1FjcMRcOtA5TX+TXVDvryB1dhzLcLsp06dOnTp06dOnTp06dOnTp06dOnTo4ztwu7H+919h8m1p8UNSZ9ebvckA3ZUe2MkDMgAFpxg6dOnTp06dOnTp06dOnTp06dOnTp031MvSu27H3meGtdRAd97Xb/Ads2SXZTp06dOnTp06dOnTp06dOnTp06dOnRz1Ck4OdrBta7KFMrNR6bG6QtF2pQBD/73eVbRB2wAvXr169evXr169evXr169evXr169evVVVpg2MHpw1HO4hHsFU6RQjCYNqBtD23Xoh3KHIhw4cOHDhw4cOHDhw4cOHDhw4cOHDfobpBAntLdjXcNHimdWGgWZFIwqDBkxFCzzu8UK3GcmTJkyZMmTJkyZMmTJkyZMmTJkyZLzVELJ1P9Y+NhBVjUrtfBd1zProPd5VtMLpYHlTJkyZMmTJkyZMmTJkyZMmTJkyZMl5qcDzUc7iDvIov1HiUT3q8zgrFzSHc/WJTl5MmTJkyZMmTJkyZMmTJkyZMmTJkyHJnyBD2PjeaNU9lZ2WIOK7MP1N0UjWF0jtfc/F+R2U6dOnTp06dOnTp06dOnTp06dOnTp0d6oG0aAbDXL/8Dnvp5RziWelN8fskxTvoYIXIen9vCgTds/wKjYgUVPCfx96cSNQN7pyt5587tw6H1Dhw4cOHDhw4cOHDhw4cOHDhw4cOGS10zqAA8sxUkrrPsHiCpEvbdDHgAiDGnlPftV5Qpv3WhIw1vy2zIdQpIWI62Y3fWzupIFRgECBAgQIECBAgQIECBAgQIECBAgQH+D+qq2aWAEIuLTPwfkUkyXm/Ad304viBYwDgqWAecVUNJEKQRtdhp8f6sXDTLM8zJkyZMmTJkyZMmTJkyZMmTJkyZMmS869iqdOlY069MMrGnKp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dOnTp06dO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" alt="EWD Webdesign Friedrichshafen Logo" class="logo-img">
+                <img src="assets/images/logo-ewd.png?v=2" alt="EWD Logo" class="logo-img" width="60" height="60" loading="eager">
                 <div class="logo-text">
                     <div class="logo-text-main">EWD</div>
                     <div class="logo-text-sub">Evolved Web Designs</div>
@@ -1421,16 +925,15 @@
             </a>
             
             <div class="mobile-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
             
             <ul class="nav-links" id="navLinks">
+                <li><a href="#leistungen">Services</a></li>
+                <li><a href="#kontakt-formular">Kontakt</a></li>
                 <li><a href="#vorteile">Vorteile</a></li>
-                <li><a href="#leistungen">Leistungen</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+                <li><a href="#kontakt-daten" class="nav-cta">Kontaktdaten</a></li>
             </ul>
         </nav>
     </header>
@@ -1443,182 +946,85 @@
                 <span class="hero-title-main">Webdesign Friedrichshafen</span>
                 <span class="hero-title-line2">Am Bodensee</span>
             </h1>
-            <p>
-                Moderne Websites für Unternehmen in Friedrichshafen und der Bodenseeregion. 
-                SEO-optimiert, responsiv und auf Ihre Ziele zugeschnitten – für mehr Sichtbarkeit und Erfolg im Internet.
-            </p>
+            <p>Moderne Websites für Unternehmen in Friedrichshafen und der Bodenseeregion. SEO-optimiert, responsiv und auf Ihre Ziele zugeschnitten.</p>
             <div class="hero-buttons">
-                <a href="#kontakt" class="btn btn-primary">Kostenlose Beratung</a>
+                <a href="#kontakt-formular" class="btn btn-primary">Kostenlose Beratung</a>
                 <a href="#leistungen" class="btn btn-secondary">Unsere Leistungen</a>
             </div>
         </div>
     </section>
 
-    <!-- VORTEILE -->
-    <section id="vorteile">
-        <div class="section-header scroll-reveal">
-            <span class="section-label">Warum professionelles Webdesign?</span>
-            <h2>Ihre Website als <span class="gradient-text">Erfolgsfaktor</span></h2>
-            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">
-                Eine professionelle Website ist heute unverzichtbar für Unternehmen. 
-                Entdecken Sie die wichtigsten Gründe für moderne Webpräsenz.
-            </p>
-        </div>
-        
-        <div class="grid grid-3">
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">01</div>
-                <h3>24/7 Online-Präsenz</h3>
-                <p>Ihre Website arbeitet rund um die Uhr. Kunden finden Informationen, kontaktieren Sie oder kaufen Produkte – zu jeder Tages- und Nachtzeit, ohne geografische Grenzen.</p>
-            </div>
-            
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">02</div>
-                <h3>Vertrauen schaffen</h3>
-                <p>Über 80% der Kunden recherchieren online vor dem Kauf. Eine professionelle Website mit modernem Design schafft Vertrauen und überzeugt potenzielle Kunden von Ihrer Kompetenz.</p>
-            </div>
-            
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">03</div>
-                <h3>Günstiges Marketing</h3>
-                <p>Webseiten sind kosteneffizienter als klassische Werbung. Mit gezielter SEO-Optimierung erreichen Sie Ihre Zielgruppe ohne teure Anzeigenkosten und generieren langfristig Leads.</p>
-            </div>
-            
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">04</div>
-                <h3>Wettbewerbsvorteil sichern</h3>
-                <p>Ihre Konkurrenz ist bereits online. Ohne professionelle Website verlieren Sie Marktanteile an Mitbewerber mit besserer Online-Präsenz und digitaler Sichtbarkeit.</p>
-            </div>
-            
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">05</div>
-                <h3>Regionale & überregionale Reichweite</h3>
-                <p>Erreichen Sie Kunden in Friedrichshafen, am Bodensee und darüber hinaus. Ihre Website öffnet Türen zu neuen Märkten in Deutschland, Europa und weltweit.</p>
-            </div>
-            
-            <div class="card scroll-reveal-scale">
-                <div class="benefit-number">06</div>
-                <h3>Erfolg messen & optimieren</h3>
-                <p>Mit professionellen Analyse-Tools sehen Sie in Echtzeit, wie viele Besucher Ihre Website hat, woher sie kommen und was sie interessiert. Optimieren Sie kontinuierlich.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- LEISTUNGEN -->
+    <!-- SEKTION 1: LEISTUNGEN -->
     <section id="leistungen">
         <div class="section-header scroll-reveal">
             <span class="section-label">Unsere Services</span>
             <h2>Webdesign & <span class="gradient-text">Online-Marketing</span></h2>
-            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">
-                Von der ersten Idee bis zum erfolgreichen Online-Auftritt – 
-                wir begleiten Sie auf dem Weg zur perfekten Website.
-            </p>
+            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">Von der ersten Idee bis zum erfolgreichen Online-Auftritt – wir begleiten Sie auf dem Weg zur perfekten Website.</p>
         </div>
         
         <div class="grid grid-3">
             <div class="card scroll-reveal">
                 <div class="card-icon">🎨</div>
-                <h3>Individuelles Webdesign Friedrichshafen</h3>
-                <p>Maßgeschneidertes Website-Design für Unternehmen am Bodensee. Modernes UX/UI-Konzept, das Ihre Markenidentität perfekt widerspiegelt und Besucher zu Kunden macht.</p>
+                <h3>Individuelles Webdesign</h3>
+                <p>Maßgeschneidertes Website-Design für Unternehmen am Bodensee. Modernes UX/UI-Konzept, das Ihre Markenidentität perfekt widerspiegelt.</p>
             </div>
-            
             <div class="card scroll-reveal">
                 <div class="card-icon">📱</div>
                 <h3>Responsive Webentwicklung</h3>
-                <p>Perfekte Darstellung auf allen Geräten. Ihre Website funktioniert optimal auf Desktop, Tablet und Smartphone – für beste User Experience und höhere Conversion-Rates.</p>
+                <p>Perfekte Darstellung auf allen Geräten. Ihre Website funktioniert optimal auf Desktop, Tablet und Smartphone.</p>
             </div>
-            
             <div class="card scroll-reveal">
                 <div class="card-icon">⚡</div>
-                <h3>SEO-Optimierung Bodensee</h3>
-                <p>Suchmaschinenoptimierung für Top-Rankings bei Google. Lokale SEO für Friedrichshafen, technische Optimierung und schnelle Ladezeiten für maximale Sichtbarkeit.</p>
+                <h3>SEO-Optimierung</h3>
+                <p>Suchmaschinenoptimierung für Top-Rankings bei Google. Lokale SEO für Friedrichshafen und schnelle Ladezeiten.</p>
             </div>
-            
             <div class="card scroll-reveal">
                 <div class="card-icon">🛠️</div>
-                <h3>Website-Wartung & Support</h3>
-                <p>Langfristige Betreuung Ihrer Website. Regelmäßige Updates, Sicherheits-Checks, technischer Support und Pflege – damit Ihre Website immer aktuell und sicher bleibt.</p>
+                <h3>Wartung & Support</h3>
+                <p>Langfristige Betreuung Ihrer Website. Regelmäßige Updates, Sicherheits-Checks und technischer Support.</p>
             </div>
-            
             <div class="card scroll-reveal">
                 <div class="card-icon">🚀</div>
                 <h3>Professionelles Hosting</h3>
-                <p>Zuverlässiges Webhosting mit SSL-Zertifikat, täglichen Backups und 99,9% Verfügbarkeit. Ihre Website läuft stabil, sicher und schnell – rund um die Uhr.</p>
+                <p>Zuverlässiges Webhosting mit SSL-Zertifikat, täglichen Backups und 99,9% Verfügbarkeit.</p>
             </div>
-            
             <div class="card scroll-reveal">
                 <div class="card-icon">💼</div>
                 <h3>E-Commerce & Online-Shops</h3>
-                <p>Individuelle Shop-Lösungen für den erfolgreichen Online-Verkauf. Warenkorbsystem, sichere Zahlungsabwicklung und intuitive Verwaltung für Ihren digitalen Vertrieb.</p>
+                <p>Individuelle Shop-Lösungen für den erfolgreichen Online-Verkauf mit sicherer Zahlungsabwicklung.</p>
             </div>
         </div>
     </section>
 
-    <!-- TEAM -->
-    <section id="team">
-        <div class="section-header scroll-reveal">
-            <span class="section-label">Ihr Webdesign-Team</span>
-            <h2>Die Experten hinter <span class="gradient-text">EWD</span></h2>
-            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">
-                Zwei erfahrene Webdesigner aus Friedrichshafen mit einer Mission: 
-                Unternehmen am Bodensee digital erfolgreich machen.
-            </p>
-        </div>
-        
-        <div class="grid grid-2">
-            <div class="card team-card scroll-reveal">
-                <div class="team-avatar">FI</div>
-                <h3>Flavio Ioco</h3>
-                <p class="team-role">Geschäftsführer & UX/UI Designer</p>
-                <p>Experte für modernes Webdesign und User Experience. Spezialisiert auf Frontend-Entwicklung, kreative Konzepte und benutzerfreundliche Interfaces für nachhaltige Kundenbindung.</p>
-            </div>
-            
-            <div class="card team-card scroll-reveal">
-                <div class="team-avatar">DH</div>
-                <h3>Daniel Holman</h3>
-                <p class="team-role">Geschäftsführer & SEO-Spezialist</p>
-                <p>Spezialist für technische SEO-Optimierung und Backend-Entwicklung. Sorgt für Top-Rankings bei Google, schnelle Ladezeiten und technisch einwandfreie Websites.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- KONTAKT -->
-    <section id="kontakt">
+    <!-- SEKTION 2: KONTAKTFORMULAR -->
+    <section id="kontakt-formular">
         <div class="section-header scroll-reveal">
             <span class="section-label">Kontakt aufnehmen</span>
             <h2>Starten Sie Ihr <span class="gradient-text">Website-Projekt</span></h2>
-            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">
-                Sie haben Fragen oder möchten ein Projekt besprechen? 
-                Kontaktieren Sie uns für eine kostenlose, unverbindliche Erstberatung.
-            </p>
+            <p style="color: var(--text-gray); max-width: 700px; margin: 1rem auto 0;">Kontaktieren Sie uns für eine kostenlose, unverbindliche Erstberatung.</p>
         </div>
         
         <div class="form-container scroll-reveal">
-            <form class="form-grid" action="https://formspree.io/f/xpwvglrn" method="POST">
-                <input type="hidden" name="_to" value="ewd.digital@gmail.com">
+            <form class="form-grid" action="https://formspree.io/f/xyzypwrk" method="POST">
+                <input type="hidden" name="_to" value="kontakt@evowebdesign.de">
                 <input type="hidden" name="_subject" value="Neue Kontaktanfrage von Website">
-                <input type="hidden" name="_next" value="#kontakt">
                 
                 <div class="form-group">
                     <label for="name">Name *</label>
                     <input type="text" id="name" name="name" required placeholder="Ihr vollständiger Name">
                 </div>
-                
                 <div class="form-group">
                     <label for="email">E-Mail *</label>
                     <input type="email" id="email" name="email" required placeholder="ihre@email.de">
                 </div>
-                
                 <div class="form-group">
                     <label for="phone">Telefon</label>
                     <input type="tel" id="phone" name="phone" placeholder="Optional">
                 </div>
-                
                 <div class="form-group">
                     <label for="company">Firma / Unternehmen</label>
                     <input type="text" id="company" name="company" placeholder="Ihr Unternehmen">
                 </div>
-                
                 <div class="form-group">
                     <label for="service">Gewünschte Leistung</label>
                     <select id="service" name="service">
@@ -1629,47 +1035,104 @@
                         <option value="ecommerce">E-Commerce / Online-Shop</option>
                         <option value="wartung">Wartung & Support</option>
                         <option value="beratung">Erstberatung</option>
-                        <option value="sonstiges">Sonstiges</option>
                     </select>
                 </div>
-                
                 <div class="form-group">
                     <label for="message">Ihre Nachricht *</label>
-                    <textarea id="message" name="message" required placeholder="Beschreiben Sie kurz Ihr Projekt oder Ihre Anfrage..."></textarea>
+                    <textarea id="message" name="message" required placeholder="Beschreiben Sie kurz Ihr Projekt..."></textarea>
                 </div>
-                
                 <button type="submit">Anfrage senden</button>
-                
-                <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 1rem;">
-                    Mit dem Absenden akzeptieren Sie unsere Datenschutzbestimmungen. 
-                    Wir melden uns innerhalb von 24 Stunden bei Ihnen.
-                </p>
+                <p style="font-size: 0.85rem; color: var(--text-gray); margin-top: 1rem;">Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
             </form>
         </div>
+    </section>
+
+    <!-- SEKTION 3: VORTEILE -->
+    <section id="vorteile">
+        <div class="section-header scroll-reveal">
+            <span class="section-label">Warum professionelles Webdesign?</span>
+            <h2>Ihre Website als <span class="gradient-text">Erfolgsfaktor</span></h2>
+        </div>
         
-        <div class="grid grid-3" style="margin-top: 4rem;">
+        <div class="grid grid-3">
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">01</div>
+                <h3>24/7 Online-Präsenz</h3>
+                <p>Ihre Website arbeitet rund um die Uhr. Kunden finden Informationen zu jeder Tages- und Nachtzeit.</p>
+            </div>
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">02</div>
+                <h3>Vertrauen schaffen</h3>
+                <p>Über 80% der Kunden recherchieren online vor dem Kauf. Eine professionelle Website schafft Vertrauen.</p>
+            </div>
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">03</div>
+                <h3>Günstiges Marketing</h3>
+                <p>Webseiten sind kosteneffizienter als klassische Werbung. Mit SEO erreichen Sie Ihre Zielgruppe direkt.</p>
+            </div>
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">04</div>
+                <h3>Wettbewerbsvorteil</h3>
+                <p>Ihre Konkurrenz ist bereits online. Ohne professionelle Website verlieren Sie Marktanteile.</p>
+            </div>
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">05</div>
+                <h3>Regionale Reichweite</h3>
+                <p>Erreichen Sie Kunden in Friedrichshafen, am Bodensee und darüber hinaus.</p>
+            </div>
+            <div class="card scroll-reveal-scale">
+                <div class="benefit-number">06</div>
+                <h3>Erfolg messen</h3>
+                <p>Mit Analyse-Tools sehen Sie in Echtzeit, wie viele Besucher Ihre Website hat.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKTION 4: TEAM -->
+    <section id="team">
+        <div class="section-header scroll-reveal">
+            <span class="section-label">Die Gründer</span>
+            <h2>Die Experten hinter <span class="gradient-text">EWD</span></h2>
+        </div>
+        
+        <div class="grid grid-2">
+            <div class="card team-card scroll-reveal">
+                <div class="team-avatar">FI</div>
+                <h3>Flavio Ioco</h3>
+                <p class="team-role">Geschäftsführer & UX/UI Designer</p>
+                <p>Experte für modernes Webdesign und User Experience. Spezialisiert auf Frontend-Entwicklung und kreative Konzepte.</p>
+            </div>
+            <div class="card team-card scroll-reveal">
+                <div class="team-avatar">DH</div>
+                <h3>Daniel Holman</h3>
+                <p class="team-role">Geschäftsführer & SEO-Spezialist</p>
+                <p>Spezialist für technische SEO-Optimierung und Backend-Entwicklung. Sorgt für Top-Rankings bei Google.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKTION 5: KONTAKTDATEN -->
+    <section id="kontakt-daten">
+        <div class="section-header scroll-reveal">
+            <span class="section-label">Unsere Kontaktdaten</span>
+            <h2>So erreichen Sie <span class="gradient-text">uns</span></h2>
+        </div>
+        
+        <div class="grid grid-3">
             <div class="card scroll-reveal" style="text-align: center;">
                 <div class="card-icon">📧</div>
                 <h3>E-Mail</h3>
-                <a href="mailto:ewd.digital@gmail.com" style="color: var(--primary); text-decoration: none; font-weight: 500;">
-                    ewd.digital@gmail.com
-                </a>
+                <a href="mailto:kontakt@evowebdesign.de" style="color: var(--primary); text-decoration: none; font-weight: 500;">kontakt@evowebdesign.de</a>
             </div>
-            
             <div class="card scroll-reveal" style="text-align: center;">
                 <div class="card-icon">📞</div>
                 <h3>Telefon</h3>
-                <a href="tel:+4917170317722" style="color: var(--primary); text-decoration: none; font-weight: 500;">
-                    0171 70 31 722
-                </a>
+                <a href="tel:+4917170317722" style="color: var(--primary); text-decoration: none; font-weight: 500;">0171 70 31 722</a>
             </div>
-            
             <div class="card scroll-reveal" style="text-align: center;">
                 <div class="card-icon">💬</div>
                 <h3>WhatsApp</h3>
-                <a href="https://wa.me/4917170317722?text=Hallo%20EWD%20Team,%20ich%20interessiere%20mich%20f%C3%BCr%20Webdesign" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 500;">
-                    Direkt schreiben
-                </a>
+                <a href="https://wa.me/4917170317722" target="_blank" rel="noopener" style="color: var(--primary); text-decoration: none; font-weight: 500;">Direkt schreiben</a>
             </div>
         </div>
     </section>
@@ -1678,51 +1141,41 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" onclick="alert('Impressum wird geladen...'); return false;">Impressum</a>
-                <a href="#" onclick="alert('Datenschutz wird geladen...'); return false;">Datenschutz</a>
+                <a href="#">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="#leistungen">Services</a>
                 <a href="#vorteile">Vorteile</a>
-                <a href="#leistungen">Leistungen</a>
                 <a href="#team">Team</a>
-                <a href="#kontakt">Kontakt</a>
+                <a href="#kontakt-formular">Kontakt</a>
             </div>
             
             <div class="social-links">
                 <a href="https://instagram.com/ewd.official" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
-                    📷
+                    <img src="icon-instagram.png?v=2" alt="Instagram" width="28" height="28" loading="lazy">
                 </a>
                 <a href="https://tiktok.com/@ewd.webdesigns" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
-                    🎵
+                    <img src="icon-tiktok.png?v=2" alt="TikTok" width="28" height="28" loading="lazy">
                 </a>
             </div>
             
             <p style="color: var(--text-gray); font-size: 0.9rem; margin-top: 2rem;">
-                © 2024 Evolved Web Designs GbR · Webdesign Friedrichshafen · Bodensee<br>
-                <small>Professionelle Website-Entwicklung für Unternehmen in Friedrichshafen und Umgebung</small>
+                © 2024 Evolved Web Designs GbR · Webdesign Friedrichshafen<br>
+                <small>E-Mail: <a href="mailto:kontakt@evowebdesign.de" style="color: var(--primary);">kontakt@evowebdesign.de</a></small>
             </p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // ===== COOKIE MANAGEMENT =====
+        // Cookie Management
         const COOKIE_NAME = 'ewd_cookie_consent';
-        const COOKIE_EXPIRY_DAYS = 365;
-        
-        let cookieConsent = {
-            necessary: true,
-            analytics: false,
-            marketing: false
-        };
+        let cookieConsent = { necessary: true, analytics: false, marketing: false };
         
         function checkCookieConsent() {
             const consent = getCookie(COOKIE_NAME);
             if (!consent) {
-                setTimeout(() => {
-                    document.getElementById('cookieBanner').classList.add('show');
-                }, 1000);
+                setTimeout(() => document.getElementById('cookieBanner').classList.add('show'), 1000);
             } else {
                 cookieConsent = JSON.parse(consent);
-                applyCookieSettings();
             }
         }
         
@@ -1735,25 +1188,16 @@
         function setCookie(name, value, days) {
             const date = new Date();
             date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = `expires=${date.toUTCString()}`;
-            document.cookie = `${name}=${value};${expires};path=/`;
+            document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
         }
         
         function acceptAllCookies() {
-            cookieConsent = {
-                necessary: true,
-                analytics: true,
-                marketing: true
-            };
+            cookieConsent = { necessary: true, analytics: true, marketing: true };
             saveCookieConsent();
         }
         
         function declineAllCookies() {
-            cookieConsent = {
-                necessary: true,
-                analytics: false,
-                marketing: false
-            };
+            cookieConsent = { necessary: true, analytics: false, marketing: false };
             saveCookieConsent();
         }
         
@@ -1763,19 +1207,8 @@
         }
         
         function saveCookieConsent() {
-            setCookie(COOKIE_NAME, JSON.stringify(cookieConsent), COOKIE_EXPIRY_DAYS);
+            setCookie(COOKIE_NAME, JSON.stringify(cookieConsent), 365);
             document.getElementById('cookieBanner').classList.remove('show');
-            applyCookieSettings();
-        }
-        
-        function applyCookieSettings() {
-            if (cookieConsent.analytics) {
-                console.log('📊 Analytics cookies enabled');
-            }
-            
-            if (cookieConsent.marketing) {
-                console.log('🎯 Marketing cookies enabled');
-            }
         }
         
         function toggleCookie(category) {
@@ -1784,20 +1217,8 @@
         }
         
         function updateToggleUI() {
-            const analyticsToggle = document.getElementById('analyticsCookieToggle');
-            const marketingToggle = document.getElementById('marketingCookieToggle');
-            
-            if (cookieConsent.analytics) {
-                analyticsToggle.classList.add('active');
-            } else {
-                analyticsToggle.classList.remove('active');
-            }
-            
-            if (cookieConsent.marketing) {
-                marketingToggle.classList.add('active');
-            } else {
-                marketingToggle.classList.remove('active');
-            }
+            document.getElementById('analyticsCookieToggle').classList.toggle('active', cookieConsent.analytics);
+            document.getElementById('marketingCookieToggle').classList.toggle('active', cookieConsent.marketing);
         }
         
         function openCookieModal() {
@@ -1809,22 +1230,15 @@
             document.getElementById('cookieModal').classList.remove('show');
         }
         
-        window.addEventListener('load', () => {
-            checkCookieConsent();
-        });
+        window.addEventListener('load', checkCookieConsent);
         
-        // ===== STICKY HEADER =====
+        // Sticky Header
         const header = document.getElementById('header');
-        
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            header.classList.toggle('scrolled', window.pageYOffset > 50);
         });
         
-        // ===== MOBILE MENU =====
+        // Mobile Menu
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
         
@@ -1840,61 +1254,41 @@
             });
         });
         
-        // ===== SCROLL ANIMATIONS =====
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
+        // Scroll Animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('revealed');
-                    }, index * 150);
+                    setTimeout(() => entry.target.classList.add('revealed'), index * 100);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
         
-        document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale').forEach(el => observer.observe(el));
         
-        // ===== SMOOTH SCROLL =====
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
                 const target = document.querySelector(targetId);
                 if (target) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-                    
                     window.scrollTo({
-                        top: targetPosition,
+                        top: target.offsetTop - header.offsetHeight - 20,
                         behavior: 'smooth'
                     });
                 }
             });
         });
         
-        // ===== FORM SUBMISSION =====
+        // Form Submission
         const form = document.querySelector('form');
         if (form) {
             form.addEventListener('submit', (e) => {
-                const button = form.querySelector('button');
+                const button = form.querySelector('button[type="submit"]');
                 button.textContent = '📤 Wird gesendet...';
                 button.disabled = true;
-                button.style.opacity = '0.7';
             });
-        }
-        
-        if (window.location.hash === '#kontakt' && document.referrer.includes('formspree')) {
-            setTimeout(() => {
-                alert('✓ Vielen Dank für Ihre Anfrage!\n\nWir haben Ihre Nachricht erhalten und melden uns innerhalb von 24 Stunden bei Ihnen.\n\n– Das EWD Team');
-            }, 500);
         }
     </script>
 </body>
